@@ -1,0 +1,43 @@
+{% extends "app_coder_cai/index.html" %}
+
+{% block titulo %} Nuevo Cliente | Tienda Coder CAI {% endblock %}
+
+{% block contenido %}
+
+  <section class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card shadow-lg border-0">
+          <div class="card-body">
+            <h2 class="card-title text-center text-primary mb-4 fw-bold">
+              Nuevo Cliente
+            </h2>
+
+            <form method="POST" novalidate>
+              {% csrf_token %}
+              
+              <!-- Renderiza los campos con estilos de Bootstrap -->
+              {{ form.as_p }}
+
+              <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  Guardar
+                </button>
+                <br>
+                <a href="{% url "index" %}" class="btn btn-primary btn-lg">
+                  Volver
+                </a>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
