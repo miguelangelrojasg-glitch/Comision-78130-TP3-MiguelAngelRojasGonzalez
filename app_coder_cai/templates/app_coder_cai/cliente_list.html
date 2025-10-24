@@ -35,11 +35,7 @@ Listado de Clientes | Tienda Coder CAI
           </a>
         </form>
       </div>
-      <div class="col-lg-4 text-lg-end">
-        <a href="{% url 'nuevo_cliente' %}" class="btn btn-light btn-lg shadow-sm">
-          + Nuevo Cliente
-        </a>
-      </div>
+
     </div>
 
     <!-- Resumen del resultado -->
@@ -105,7 +101,7 @@ Listado de Clientes | Tienda Coder CAI
             {% endif %}
           </p>
           <div class="d-flex gap-2 justify-content-center">
-            <a href="{% url 'cliente_list' %}" class="btn btn-primary btn-lg">Crear cliente</a>
+            <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg">Crear cliente</a>
             <a href="{% url 'index' %}" class="btn btn-outline-primary btn-lg">Volver al inicio</a>
           </div>
         </div>
@@ -114,8 +110,8 @@ Listado de Clientes | Tienda Coder CAI
 
     <!-- Acciones inferiores -->
     <div class="d-flex flex-column flex-sm-row gap-2 justify-content-between mt-4">
-      <a href="{% url 'cliente_list' %}" class="btn btn-secondary btn-lg">Volver</a>
-      <a href="{% url 'cliente_list' %}" class="btn btn-primary btn-lg">Nuevo Cliente</a>
+      <a href="{% url "index" %}" class="btn btn-primary btn-lg">Volver</a>
+      <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg">Nuevo Cliente</a>
     </div>
   </div>
 </section>

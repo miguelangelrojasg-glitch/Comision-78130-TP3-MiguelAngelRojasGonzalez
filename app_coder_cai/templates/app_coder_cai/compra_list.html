@@ -1,0 +1,56 @@
+{% extends "app_coder_cai/index.html" %}
+{% block title %}Compras | Tienda Coder CAI{% endblock %}
+{% block contenido %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h1 class="h4 mb-0">Compras</h1>
+  <a href="{% url 'nueva_compra' %}" class="btn btn-primary">+ Nueva compra</a>
+</div>
+
+<div class="table-responsive bg-white rounded-3 shadow-sm">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+      <tr>
+        <th>#</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Producto</th>
+        <th class="text-end">Cant.</th>
+        <th class="text-end">Precio unit.</th>
+        <th class="text-end">Subtotal</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% if compras %}
+        {% for c in compras %}
+        <tr>
+          <td>{{ c.id }}</td>
+          <td>{{ c.fecha|date:"d/m/Y H:i" }}</td>
+          <td>{{ c.cliente }}</td>
+          <td>{{ c.producto.nombre }}</td>
+          <td class="text-end">{{ c.cantidad }}</td>
+          <td class="text-end">${{ c.precio_unitario }}</td>
+          <td class="text-end">${{ c.subtotal }}</td>
+          <td>
+            {% if c.estado == "PAGADA" %}
+              <span class="badge text-bg-success">Pagada</span>
+            {% elif c.estado == "CANCELADA" %}
+              <span class="badge text-bg-secondary">Cancelada</span>
+            {% else %}
+              <span class="badge text-bg-warning text-dark">Creada</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="8" class="text-center text-muted py-4">
+            No hay compras registradas.
+          </td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

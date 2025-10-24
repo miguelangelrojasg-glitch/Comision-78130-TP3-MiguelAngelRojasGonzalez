@@ -1,111 +1,139 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block titulo %} Inicio| Proyecto Django {% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <style>
-        .hero {
-            background: linear-gradient(135deg, #0d6efd, #6610f2);
-            color: white;
-            padding: 6rem 0;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            transition: 0.3s ease-in-out;
-        }
-        footer {
-            background-color: #f8f9fa;
-            padding: 2rem 0;
-            text-align: center;
-            margin-top: 3rem;
-        }
-    </style>
-</head>
-<body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="#">Tienda Coder CAI</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="{% url "nuevo_cliente" %}">Nuevo Cliente</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Carrito</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-{% block contenido %}
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <h1>Hola Mundo 👋, soy Miguel</h1>
-            <p>Bienvenido a mi proyecto Django con Bootstrap 5</p>
-            <a href="#" class="btn btn-light btn-lg mt-3">Empezar</a>
-        </div>
-    </section>
 
-    <!-- Cards -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row text-center mb-4">
-                <h2 class="fw-bold">Secciones destacadas</h2>
-                <p class="text-muted">Explora las funcionalidades de este proyecto</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card shadow-sm h-100">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary">Funcionalidad 1</h5>
-                            <p class="card-text text-muted">Descripción breve de la funcionalidad número uno.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm h-100">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary">Funcionalidad 2</h5>
-                            <p class="card-text text-muted">Descripción breve de la funcionalidad número dos.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm h-100">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary">Funcionalidad 3</h5>
-                            <p class="card-text text-muted">Descripción breve de la funcionalidad número tres.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{% block titulo %}
+Inicio | Tienda Coder CAI
 {% endblock %}
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p class="mb-0 text-muted">&copy; 2025 Miguel Rojas — Proyecto Django</p>
-        </div>
-    </footer>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+{% block contenido %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-</body>
-</html>
+<!-- Hero / Encabezado -->
+<section class="hero border-bottom py-5" style="background: linear-gradient(180deg,#f8f9fa, #ffffff);">
+  <div class="container text-center">
+    <h1 class="fw-bold mb-2">Tienda Coder CAI</h1>
+    <p class="lead text-muted mb-0">Panel principal para administrar tus productos y clientes.</p>
+  </div>
+</section>
+
+<!-- Contenido principal -->
+<section class="py-5 bg-white">
+  <div class="container">
+
+    <!-- Acciones rápidas -->
+    <div class="row g-3 mb-5 justify-content-center">
+      <div class="col-12 col-md-4">
+        <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg w-100 shadow-sm rounded-3">
+          🧑‍💼 Nuevo Cliente
+        </a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a href="{% url 'lista_cliente' %}" class="btn btn-outline-primary btn-lg w-100 shadow-sm rounded-3">
+          📋 Listado de Clientes
+        </a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a href="{% url 'nuevo_producto' %}" class="btn btn-outline-success btn-lg w-100 shadow-sm rounded-3">
+          📦 Nuevo Producto
+        </a>
+      </div>
+    </div>
+
+    <!-- Resumen / Métricas -->
+    <div class="row g-4 mb-5">
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm border-0 h-100 rounded-4">
+          <div class="card-body py-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <h6 class="text-muted mb-0">Clientes Totales</h6>
+              <span class="badge bg-primary-subtle text-primary">General</span>
+            </div>
+            <h1 class="fw-bold mt-3 mb-0">{{ total_clientes|default:"—" }}</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm border-0 h-100 rounded-4">
+          <div class="card-body py-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <h6 class="text-muted mb-0">Altas de la Semana</h6>
+              <span class="badge bg-success-subtle text-success">7 días</span>
+            </div>
+            <h1 class="fw-bold mt-3 mb-0">{{ altas_semana|default:"—" }}</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card shadow-sm border-0 h-100 rounded-4">
+          <div class="card-body py-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <h6 class="text-muted mb-0">Última Actualización</h6>
+              <span class="badge bg-secondary">Sistema</span>
+            </div>
+            <p class="fs-5 fw-semibold mt-3 mb-0">
+              {% if ultima_actualizacion %}
+                {{ ultima_actualizacion|date:"d/m/Y H:i" }}
+              {% else %}
+                —
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Últimos clientes -->
+    <div class="card shadow-sm border-0 rounded-4">
+      <div class="card-body p-0">
+        <div class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom">
+          <h5 class="fw-bold mb-0">Últimos Clientes</h5>
+          <a href="{% url 'lista_cliente' %}" class="btn btn-sm btn-outline-primary rounded-3">Ver todos</a>
+        </div>
+
+        {% if ultimos_clientes %}
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th class="d-none d-md-table-cell">Email</th>
+                  <th class="d-none d-md-table-cell">Fecha Nac.</th>
+                  <th>Creado</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for c in ultimos_clientes %}
+                  <tr>
+                    <td class="fw-semibold">{{ c.nombre }}</td>
+                    <td>{{ c.apellido }}</td>
+                    <td class="text-muted d-none d-md-table-cell">{{ c.email }}</td>
+                    <td class="text-muted d-none d-md-table-cell">{{ c.fecha_de_nacimiento|date:"d/m/Y" }}</td>
+                    <td><span class="badge bg-secondary">{{ c.fecha_de_creacion|date:"d/m/Y H:i" }}</span></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="text-center p-5">
+            <h5 class="fw-bold text-primary mb-2">Sin registros</h5>
+            <p class="text-muted mb-4">Todavía no cargaste ningún cliente.</p>
+            <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg rounded-3">Crear cliente</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Acciones inferiores -->
+    <div class="d-flex flex-column flex-sm-row gap-2 justify-content-between mt-4">
+      <a href="{% url 'lista_cliente' %}" class="btn btn-outline-primary btn-lg rounded-3">Ver listado</a>
+      <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg rounded-3">Nuevo Cliente</a>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+
