@@ -1,139 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>{% block titulo %}Inicio | Tienda Coder CAI{% endblock %}</title>
 
-{% block titulo %}
-Inicio | Tienda Coder CAI
-{% endblock %}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-{% block contenido %}
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+</head>
+<body class="bg-light">
 
-<!-- Hero / Encabezado -->
-<section class="hero border-bottom py-5" style="background: linear-gradient(180deg,#f8f9fa, #ffffff);">
-  <div class="container text-center">
-    <h1 class="fw-bold mb-2">Tienda Coder CAI</h1>
-    <p class="lead text-muted mb-0">Panel principal para administrar tus productos y clientes.</p>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="{% url 'index' %}">Tienda Coder CAI</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="mainNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto gap-2">
+          <li class="nav-item"><a class="nav-link" href="{% url 'lista_cliente' %}">Clientes</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'lista_producto' %}">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'lista_compra' %}">Compras</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mensajes -->
+  {% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
   </div>
-</section>
+  {% endif %}
 
-<!-- Contenido principal -->
-<section class="py-5 bg-white">
-  <div class="container">
-
-    <!-- Acciones rápidas -->
-    <div class="row g-3 mb-5 justify-content-center">
-      <div class="col-12 col-md-4">
-        <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg w-100 shadow-sm rounded-3">
-          🧑‍💼 Nuevo Cliente
-        </a>
-      </div>
-      <div class="col-12 col-md-4">
-        <a href="{% url 'lista_cliente' %}" class="btn btn-outline-primary btn-lg w-100 shadow-sm rounded-3">
-          📋 Listado de Clientes
-        </a>
-      </div>
-      <div class="col-12 col-md-4">
-        <a href="{% url 'nuevo_producto' %}" class="btn btn-outline-success btn-lg w-100 shadow-sm rounded-3">
-          📦 Nuevo Producto
-        </a>
-      </div>
+  {% block contenido %}
+  <!-- Hero / Encabezado -->
+  <section class="hero border-bottom py-5" style="background: linear-gradient(180deg,#f8f9fa,#ffffff);">
+    <div class="container text-center">
+      <h1 class="fw-bold mb-2">Tienda Coder CAI</h1>
+      <p class="lead text-muted mb-0">Panel principal para administrar tus productos y clientes.</p>
     </div>
+  </section>
 
-    <!-- Resumen / Métricas -->
-    <div class="row g-4 mb-5">
-      <div class="col-12 col-md-4">
-        <div class="card shadow-sm border-0 h-100 rounded-4">
-          <div class="card-body py-4">
-            <div class="d-flex align-items-center justify-content-between">
-              <h6 class="text-muted mb-0">Clientes Totales</h6>
-              <span class="badge bg-primary-subtle text-primary">General</span>
+  <!-- Contenido principal -->
+  <section class="py-5 bg-white">
+    <div class="container">
+
+      <!-- Acciones rápidas -->
+      <div class="row g-3 mb-5 justify-content-center">
+        <div class="col-12 col-md-4">
+          <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg w-100 shadow-sm rounded-3">
+            🧑‍💼 Nuevo Cliente
+          </a>
+        </div>
+        <div class="col-12 col-md-4">
+          <a href="{% url 'lista_cliente' %}" class="btn btn-outline-primary btn-lg w-100 shadow-sm rounded-3">
+            📋 Listado de Clientes
+          </a>
+        </div>
+        <div class="col-12 col-md-4">
+          <a href="{% url 'nuevo_producto' %}" class="btn btn-outline-success btn-lg w-100 shadow-sm rounded-3">
+            📦 Nuevo Producto
+          </a>
+        </div>
+      </div>
+
+      <!-- Resumen / Métricas -->
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-md-4">
+          <div class="card shadow-sm border-0 h-100 rounded-4">
+            <div class="card-body py-4">
+              <div class="d-flex align-items-center justify-content-between">
+                <h6 class="text-muted mb-0">Clientes Totales</h6>
+                <span class="badge bg-primary-subtle text-primary">General</span>
+              </div>
+              <h1 class="fw-bold mt-3 mb-0">{{ total_clientes|default:"—" }}</h1>
             </div>
-            <h1 class="fw-bold mt-3 mb-0">{{ total_clientes|default:"—" }}</h1>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="card shadow-sm border-0 h-100 rounded-4">
+            <div class="card-body py-4">
+              <div class="d-flex align-items-center justify-content-between">
+                <h6 class="text-muted mb-0">Altas de la Semana</h6>
+                <span class="badge bg-success-subtle text-success">7 días</span>
+              </div>
+              <h1 class="fw-bold mt-3 mb-0">{{ altas_semana|default:"—" }}</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="card shadow-sm border-0 h-100 rounded-4">
+            <div class="card-body py-4">
+              <div class="d-flex align-items-center justify-content-between">
+                <h6 class="text-muted mb-0">Última Actualización</h6>
+                <span class="badge bg-secondary">Sistema</span>
+              </div>
+              <p class="fs-5 fw-semibold mt-3 mb-0">
+                {% if ultima_actualizacion %}
+                  {{ ultima_actualizacion|date:"d/m/Y H:i" }}
+                {% else %}
+                  —
+                {% endif %}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-12 col-md-4">
-        <div class="card shadow-sm border-0 h-100 rounded-4">
-          <div class="card-body py-4">
-            <div class="d-flex align-items-center justify-content-between">
-              <h6 class="text-muted mb-0">Altas de la Semana</h6>
-              <span class="badge bg-success-subtle text-success">7 días</span>
-            </div>
-            <h1 class="fw-bold mt-3 mb-0">{{ altas_semana|default:"—" }}</h1>
+      <!-- Últimos clientes -->
+      <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body p-0">
+          <div class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom">
+            <h5 class="fw-bold mb-0">Últimos Clientes</h5>
+            <a href="{% url 'lista_cliente' %}" class="btn btn-sm btn-outline-primary rounded-3">Ver todos</a>
           </div>
-        </div>
-      </div>
 
-      <div class="col-12 col-md-4">
-        <div class="card shadow-sm border-0 h-100 rounded-4">
-          <div class="card-body py-4">
-            <div class="d-flex align-items-center justify-content-between">
-              <h6 class="text-muted mb-0">Última Actualización</h6>
-              <span class="badge bg-secondary">Sistema</span>
-            </div>
-            <p class="fs-5 fw-semibold mt-3 mb-0">
-              {% if ultima_actualizacion %}
-                {{ ultima_actualizacion|date:"d/m/Y H:i" }}
-              {% else %}
-                —
-              {% endif %}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Últimos clientes -->
-    <div class="card shadow-sm border-0 rounded-4">
-      <div class="card-body p-0">
-        <div class="d-flex justify-content-between align-items-center px-4 py-3 border-bottom">
-          <h5 class="fw-bold mb-0">Últimos Clientes</h5>
-          <a href="{% url 'lista_cliente' %}" class="btn btn-sm btn-outline-primary rounded-3">Ver todos</a>
-        </div>
-
-        {% if ultimos_clientes %}
-          <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th class="d-none d-md-table-cell">Email</th>
-                  <th class="d-none d-md-table-cell">Fecha Nac.</th>
-                  <th>Creado</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for c in ultimos_clientes %}
+          {% if ultimos_clientes %}
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
                   <tr>
-                    <td class="fw-semibold">{{ c.nombre }}</td>
-                    <td>{{ c.apellido }}</td>
-                    <td class="text-muted d-none d-md-table-cell">{{ c.email }}</td>
-                    <td class="text-muted d-none d-md-table-cell">{{ c.fecha_de_nacimiento|date:"d/m/Y" }}</td>
-                    <td><span class="badge bg-secondary">{{ c.fecha_de_creacion|date:"d/m/Y H:i" }}</span></td>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th class="d-none d-md-table-cell">Email</th>
+                    <th class="d-none d-md-table-cell">Fecha Nac.</th>
+                    <th>Creado</th>
                   </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        {% else %}
-          <div class="text-center p-5">
-            <h5 class="fw-bold text-primary mb-2">Sin registros</h5>
-            <p class="text-muted mb-4">Todavía no cargaste ningún cliente.</p>
-            <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg rounded-3">Crear cliente</a>
-          </div>
-        {% endif %}
+                </thead>
+                <tbody>
+                  {% for c in ultimos_clientes %}
+                    <tr>
+                      <td class="fw-semibold">{{ c.nombre }}</td>
+                      <td>{{ c.apellido }}</td>
+                      <td class="text-muted d-none d-md-table-cell">{{ c.email }}</td>
+                      <td class="text-muted d-none d-md-table-cell">{{ c.fecha_de_nacimiento|date:"d/m/Y" }}</td>
+                      <td><span class="badge bg-secondary">{{ c.fecha_de_creacion|date:"d/m/Y H:i" }}</span></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <div class="text-center p-5">
+              <h5 class="fw-bold text-primary mb-2">Sin registros</h5>
+              <p class="text-muted mb-4">Todavía no cargaste ningún cliente.</p>
+              <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg rounded-3">Crear cliente</a>
+            </div>
+          {% endif %}
+        </div>
       </div>
+
+      <!-- Acciones inferiores -->
+      <div class="d-flex flex-column flex-sm-row gap-2 justify-content-between mt-4">
+        <a href="{% url 'lista_cliente' %}" class="btn btn-outline-primary btn-lg rounded-3">Ver listado</a>
+        <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg rounded-3">Nuevo Cliente</a>
+      </div>
+      </div>
+
     </div>
+  </section>
+  {% endblock %}
 
-    <!-- Acciones inferiores -->
-    <div class="d-flex flex-column flex-sm-row gap-2 justify-content-between mt-4">
-      <a href="{% url 'lista_cliente' %}" class="btn btn-outline-primary btn-lg rounded-3">Ver listado</a>
-      <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg rounded-3">Nuevo Cliente</a>
-    </div>
-
-  </div>
-</section>
-
-{% endblock %}
-
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+</body>
+</html>
