@@ -26,6 +26,20 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'lista_cliente' %}">Clientes</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'lista_producto' %}">Productos</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'lista_compra' %}">Compras</a></li>
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'profile_detail' %}">Perfil</a></li>
+            <li class="nav-item">
+              <form action="{% url 'logout' %}" method="POST" style="display: inline;">
+               {% csrf_token %}
+               <button type="submit" class="btn btn-link nav-link p-0" style="border: none; background: none;">
+                 Cerrar sesión
+               </button> 
+              </form>
+            </li> 
+          {% else %}
+             <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
+             <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrarse</a></li>
+          {% endif %}   
         </ul>
       </div>
     </div>
@@ -167,7 +181,6 @@
       <div class="d-flex flex-column flex-sm-row gap-2 justify-content-between mt-4">
         <a href="{% url 'lista_cliente' %}" class="btn btn-outline-primary btn-lg rounded-3">Ver listado</a>
         <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg rounded-3">Nuevo Cliente</a>
-      </div>
       </div>
 
     </div>

@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from app_coder_cai.forms import ClienteForm, ProductoForm, CompraForm
 from app_coder_cai.models import Cliente, Producto, Compra
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     return render(request, "app_coder_cai/index.html")
 
-
+@login_required
 def test(request):
     return render(request, "app_coder_cai/test.html")
 
@@ -14,6 +16,7 @@ def test(request):
 # -----------------------
 # CLIENTES
 # -----------------------
+@login_required
 def nuevo_cliente(request):
     if request.method == "POST":
         form = ClienteForm(request.POST)
@@ -24,7 +27,7 @@ def nuevo_cliente(request):
         form = ClienteForm()
     return render(request, "app_coder_cai/nuevo_cliente_form.html", {"form": form})
 
-
+@login_required
 def lista_cliente(request):
     query = request.GET.get("q", "")
     if query:
@@ -33,7 +36,7 @@ def lista_cliente(request):
         cliente = Cliente.objects.all().order_by("-fecha_de_creacion")
     return render(request, "app_coder_cai/cliente_list.html", {"cliente": cliente, "query": query})
 
-
+@login_required
 def eliminar_cliente(request, pk): # pk = ID en la base de datos
     #cliente = Cliente.objects.get(nombre=pk)
     cliente = get_object_or_404(Cliente, pk=pk)
@@ -41,7 +44,7 @@ def eliminar_cliente(request, pk): # pk = ID en la base de datos
     messages.success(request, "Cliente eliminado correctamente")
     return redirect("lista_cliente")
 
-
+@login_required
 def modificar_cliente(request, pk):  # ← agrega pk
     cliente = get_object_or_404(Cliente, pk=pk)
     if request.method == "POST":
@@ -58,6 +61,7 @@ def modificar_cliente(request, pk):  # ← agrega pk
 # -----------------------
 # PRODUCTOS
 # -----------------------
+@login_required
 def lista_producto(request):
     query = request.GET.get("q", "")
     if query:
@@ -66,7 +70,7 @@ def lista_producto(request):
         productos = Producto.objects.all()
     return render(request, "app_coder_cai/producto_list.html", {"productos": productos, "query": query})
 
-
+@login_required
 def nuevo_producto(request):
     if request.method == "POST":
         form = ProductoForm(request.POST)
@@ -77,6 +81,7 @@ def nuevo_producto(request):
         form = ProductoForm()
     return render(request, "app_coder_cai/nuevo_producto_form.html", {"form": form})
 
+@login_required
 def eliminar_producto(request, pk): # pk = ID en la base de datos
     #cliente = Cliente.objects.get(nombre=pk)
     producto = get_object_or_404(Producto, pk=pk)
@@ -88,11 +93,12 @@ def eliminar_producto(request, pk): # pk = ID en la base de datos
 # -----------------------
 # COMPRAS
 # -----------------------
+@login_required
 def lista_compra(request):
     compras = Compra.objects.select_related("cliente", "producto").order_by("-fecha")
     return render(request, "app_coder_cai/compra_list.html", {"compras": compras})
 
-
+@login_required
 def nueva_compra(request):
     if request.method == "POST":
         form = CompraForm(request.POST)
@@ -103,6 +109,7 @@ def nueva_compra(request):
         form = CompraForm()
     return render(request, "app_coder_cai/nueva_compra_form.html", {"form": form})
 
+@login_required
 def eliminar_compra(request, pk): # pk = ID en la base de datos
     #cliente = Cliente.objects.get(nombre=pk)
     compra = get_object_or_404(Compra, pk=pk)
@@ -110,6 +117,7 @@ def eliminar_compra(request, pk): # pk = ID en la base de datos
     messages.success(request, "Compra eliminada correctamente")
     return redirect("lista_compra")
 
+@login_required
 def modificar_compra(request, pk):
     compra = get_object_or_404(Compra, pk=pk)
     if request.method == "POST":
