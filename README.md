@@ -4,3 +4,4 @@ proyecto_coder_cai
 app_coder_cai principal (nuevas compras, lista de compras, nuevos clientes, lista de clientes, nuevos productos, lista de productos) En todos los casos se puede modificar la información como tambien eliminar.
 Segunda app_proveedores (Nuevos proveedores y lista de proveedores) En todos los casos se puede modificar la información como tambien eliminar.
 Tercera app accounts (login, logout, registrar usuario, editar información de usuario)
+En el siguiente link se ecnuentra el video de la APP: https://drive.google.com/drive/folders/1_Ha2vUHAOCwJADbVoF6_2-y0qDVYFROM?usp=sharing
