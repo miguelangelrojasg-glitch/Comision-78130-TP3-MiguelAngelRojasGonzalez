@@ -1,0 +1,44 @@
+{% extends "app_coder_cai/index.html" %}
+
+{% block contenido %}
+<h2>Lista de Proveedores</h2>
+
+<!-- Buscador -->
+<form method="get" class="mb-3">
+    <input type="text" name="q" value="{{ query }}" placeholder="Buscar proveedor...">
+    <button type="submit">Buscar</button>
+</form>
+
+<!-- Botón Nuevo Proveedor -->
+<a href="{% url 'nuevo_proveedor' %}" class="btn btn-success">Nuevo Proveedor</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for proveedor in proveedores %}
+        <tr>
+            <td>{{ proveedor.nombre }}</td>
+            <td>{{ proveedor.telefono }}</td>
+            <td>{{ proveedor.email }}</td>
+            <td>{{ proveedor.direccion }}</td>
+            <td>
+                <a href="{% url 'modificar_proveedor' proveedor.pk %}" class="btn btn-warning">Modificar</a>
+                <a href="{% url 'eliminar_proveedor' proveedor.pk %}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No hay proveedores registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

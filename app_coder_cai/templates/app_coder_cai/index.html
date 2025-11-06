@@ -22,23 +22,25 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="mainNav" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto gap-2">
+        <ul class="navbar-nav ms-auto gap-2 align-items-center">
           <li class="nav-item"><a class="nav-link" href="{% url 'lista_cliente' %}">Clientes</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'lista_producto' %}">Productos</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'lista_compra' %}">Compras</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'lista_proveedores' %}">Proveedores</a></li>
+          
           {% if user.is_authenticated %}
             <li class="nav-item"><a class="nav-link" href="{% url 'profile_detail' %}">Perfil</a></li>
             <li class="nav-item">
-              <form action="{% url 'logout' %}" method="POST" style="display: inline;">
-               {% csrf_token %}
-               <button type="submit" class="btn btn-link nav-link p-0" style="border: none; background: none;">
-                 Cerrar sesión
-               </button> 
-              </form>
-            </li> 
+              <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit(); return false;">
+                Cerrar sesión
+              </a>
+            </li>
+            <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+              {% csrf_token %}
+            </form>
           {% else %}
-             <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
-             <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrarse</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Registrarse</a></li>
           {% endif %}   
         </ul>
       </div>
@@ -61,8 +63,9 @@
   <!-- Hero / Encabezado -->
   <section class="hero border-bottom py-5" style="background: linear-gradient(180deg,#f8f9fa,#ffffff);">
     <div class="container text-center">
-      <h1 class="fw-bold mb-2">Tienda Coder CAI</h1>
-      <p class="lead text-muted mb-0">Panel principal para administrar tus productos y clientes.</p>
+        <h1 class="fw-bold mb-2">Tienda Coder CAI</h1>
+        <p class="lead text-muted mb-0">Panel principal para administrar tus productos y clientes.</p>
+        <p class="text-muted mb-0 mt-2">¡Hola a todos! Soy Miguel Ángel, tengo 40 años, soy argentino y vivo en la ciudad de Villa Dominico, partido de Avellaneda (la capital del fútbol). Soy Licenciado en Administración de Empresas y trabajo en el Banco de la Nación Argentina. Actualmente me desempeño en el área de canales electrónicos, administrando el Home Banking y la App BNA+. Esta es mi primera aplicación web y estoy muy contento de que la vean.</p>
     </div>
   </section>
 
@@ -70,7 +73,7 @@
   <section class="py-5 bg-white">
     <div class="container">
 
-      <!-- Acciones rápidas -->
+      <!-- Acciones rápidas - AGREGADOS NUEVOS BOTONES -->
       <div class="row g-3 mb-5 justify-content-center">
         <div class="col-12 col-md-4">
           <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary btn-lg w-100 shadow-sm rounded-3">
@@ -87,7 +90,22 @@
             📦 Nuevo Producto
           </a>
         </div>
-      </div>
+        <!-- NUEVOS BOTONES AGREGADOS -->
+        <div class="col-12 col-md-4">
+          <a href="{% url 'nueva_compra' %}" class="btn btn-outline-info btn-lg w-100 shadow-sm rounded-3">
+            🛒 Nueva Compra
+          </a>
+        </div>
+        <div class="col-12 col-md-4">
+          <a href="{% url 'nuevo_proveedor' %}" class="btn btn-outline-warning btn-lg w-100 shadow-sm rounded-3">
+            🏢 Nuevo Proveedor
+          </a>
+        </div>
+        <div class="col-12 col-md-4">
+          <a href="{% url 'lista_proveedores' %}" class="btn btn-outline-secondary btn-lg w-100 shadow-sm rounded-3">
+            📊 Listado Proveedores
+          </a>
+        </div>
 
       <!-- Resumen / Métricas -->
       <div class="row g-4 mb-5">

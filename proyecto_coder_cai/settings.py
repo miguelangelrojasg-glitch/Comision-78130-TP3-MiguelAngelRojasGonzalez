@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "app_coder_cai",
     "widget_tweaks",
     "accounts",
+    'app_proveedores',
 ]
 
 MIDDLEWARE = [

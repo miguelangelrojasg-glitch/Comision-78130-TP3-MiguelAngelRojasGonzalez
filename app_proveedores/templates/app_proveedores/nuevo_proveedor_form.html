@@ -1,0 +1,14 @@
+{% extends "app_coder_cai/index.html" %}
+
+{% block contenido %}
+<h2>{% if edicion %}Modificar{% else %}Nuevo{% endif %} Proveedor</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+        {% if edicion %}Guardar Cambios{% else %}Crear Proveedor{% endif %}
+    </button>
+    <a href="{% url 'lista_proveedores' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
